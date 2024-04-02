@@ -41,6 +41,10 @@ class _SignInState extends State<SignIn> {
 
   }
 
+  void resetPassword() {
+
+  }
+
   _showToast(String text) { //function to show toast on the page
     Widget signinToast = Container(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
@@ -114,7 +118,15 @@ class _SignInState extends State<SignIn> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 16),
-                            child: UniTextField(hintText: "SENHA", controller: passTextFieldController, hideText: true)
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 4),
+                                  child: UniTextField(hintText: "SENHA", controller: passTextFieldController, hideText: true),
+                                ),
+                                Row(mainAxisAlignment: MainAxisAlignment.end, children: [RichText(text: TextSpan(text: "Esqueci minha senha", style: TextStyle(color: MyColors.unimatchRed), recognizer: TapGestureRecognizer()..onTap = resetPassword), textAlign: TextAlign.end,)])
+                              ],
+                            )
                           ),
                           UniButton(btnText: "ENTRAR", onPress: () => login()), //insert the controller in the password text field
                           Padding(
